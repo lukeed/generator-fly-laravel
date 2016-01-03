@@ -90,6 +90,42 @@ module.exports = yeoman.generators.Base.extend({
 
   copy: function() {
     const done = this.async();
+
+    this.template('LICENSE');
+    // this.template('README.md');
+    this.template('editorconfig', '.editorconfig');
+    this.template('_package.json', 'package.json');
+
+    this.template('flyfile', 'flyfile.js');
+
+    this.fs.copy(
+      this.templatePath('assets'),
+      this.destinationPath('resources/assets')
+    );
+
+    const lint = this.props.installXO ? 'eslint_xo' : 'eslint_default';
+    this.template(lint, '.eslintrc');
+
+    if (this.props.gitinit) {
+      this.template('gitignore', '.gitignore');
+      this.template('gitattributes', '.gitattributes');
+    }
+
+    if (this.includeAva) {
+      this.fs.copy(
+        this.templatePath('tests'),
+        this.destinationPath('resources/tests')
+      );
+    }
+
+    if (this.props.travis) {
+      this.template('_travis.yml', '.travis.yml');
+    }
+
+    if (this.props.changelog) {
+      this.template('changelog.md');
+    }
+
     done();
   },
 
