@@ -80,6 +80,8 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    console.log( 'INSIDE INSTALL' );
+    this.installDependencies({bower: false});
+    this.spawnCommand('composer', ['install']);
   }
 });
