@@ -94,5 +94,19 @@ module.exports = yeoman.generators.Base.extend({
     console.log( 'INSIDE INSTALL' );
     this.installDependencies({bower: false});
     this.spawnCommand('composer', ['install']);
+  },
+
+  end: function() {
+    if (!this.props.gitinit) return;
+
+    const self = this;
+    console.log('\n');
+    this.spawnCommand('git', ['init']).on('close', function() {
+      self.spawnCommand('git', ['add', '--all']).on('close', function() {
+        self.spawnCommand('git', ['commit', '-m', 'first commit, via generator-fly-laravel 🚀']).on('close', function() {
+          console.log('\n');
+        });
+      });
+    });
   }
 });
