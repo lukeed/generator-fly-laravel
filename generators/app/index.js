@@ -8,7 +8,7 @@ module.exports = yeoman.generators.Base.extend({
     const done = this.async();
 
     this.log(yosay(
-      'Welcome to the stunning ' + chalk.red('Fly Laravel') + ' generator!'
+      'Welcome to the ' + chalk.red('Fly Laravel') + ' generator!'
     ));
 
     const prompts = [{
@@ -87,12 +87,10 @@ module.exports = yeoman.generators.Base.extend({
 
   copy: function() {
     const done = this.async();
-    console.log('inside copy')
     done();
   },
 
   install: function() {
-    console.log('INSIDE INSTALL');
     this.installDependencies({bower: false});
     this.spawnCommand('composer', ['install']);
   },
