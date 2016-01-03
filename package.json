@@ -1,6 +1,6 @@
 {
   "name": "generator-fly-laravel",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "description": "Scaffold a new Laravel application with Fly as its tooling system.",
   "homepage": "lukeed/generator-fly-laravel",
   "author": {
