@@ -1,2 +1,6 @@
 *.log
-node_modules/
+/node_modules
+/vendor
+Homestead.yaml
+Homestead.json
+.env
