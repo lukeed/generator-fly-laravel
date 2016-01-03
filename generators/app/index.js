@@ -73,10 +73,21 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: function () {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
+    const done = this.async();
+    const self = this;
+
+    self.spawnCommand('git', [
+      'clone', '--depth=1', 'https://github.com/laravel/laravel.git', '.'
+    ]).on('close', function() {
+      self.spawnCommand('rm', ['-rf', '!$/.git']).on('close', function() {
+        self.copy();
+        done();
+      });
+    });
+  },
+
+  copy: function () {
+    console.log( 'inside copy' )
   },
 
   install: function () {
