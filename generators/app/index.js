@@ -78,7 +78,7 @@ module.exports = yeoman.generators.Base.extend({
     self.spawnCommand('git', [
       'clone', '--depth=1', 'https://github.com/laravel/laravel.git', '.'
     ]).on('close', function() {
-      self.spawnCommand('rm', ['-rf', '!$/.git', 'package.json']).on('close', function() {
+      self.spawnCommand('rm', ['-rf', '.git', 'package.json']).on('close', function() {
         self.copy();
         done();
       });
