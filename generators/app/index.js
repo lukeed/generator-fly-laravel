@@ -4,10 +4,9 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
+  prompting: function() {
     const done = this.async();
 
-    // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the stunning ' + chalk.red('Fly Laravel') + ' generator!'
     ));
@@ -58,7 +57,7 @@ module.exports = yeoman.generators.Base.extend({
       default: true
     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, function(props) {
       this.props = props;
 
       this.includeXO = props.installXO;
@@ -72,7 +71,7 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  writing: function () {
+  writing: function() {
     const done = this.async();
     const self = this;
 
@@ -86,12 +85,12 @@ module.exports = yeoman.generators.Base.extend({
     });
   },
 
-  copy: function () {
-    console.log( 'inside copy' )
+  copy: function() {
+    console.log('inside copy')
   },
 
-  install: function () {
-    console.log( 'INSIDE INSTALL' );
+  install: function() {
+    console.log('INSIDE INSTALL');
     this.installDependencies({bower: false});
     this.spawnCommand('composer', ['install']);
   },
