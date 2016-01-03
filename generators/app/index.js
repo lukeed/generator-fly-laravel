@@ -3,6 +3,8 @@ const fmtUrl = require('normalize-url');
 const chalk = require('chalk');
 const yosay = require('yosay');
 
+const repo = 'https://github.com/laravel/laravel.git';
+
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
     const done = this.async();
@@ -83,9 +85,7 @@ module.exports = yeoman.generators.Base.extend({
     const done = this.async();
     const self = this;
 
-    self.spawnCommand('git', [
-      'clone', '--depth=1', 'https://github.com/laravel/laravel.git', '.'
-    ]).on('close', function() {
+    self.spawnCommand('git', ['clone', '--depth=1', repo, '.']).on('close', function() {
       const files = ['.git', 'package.json', '.gitignore', '.gitattributes', 'resources/assets'];
       const args  = ['-rf'].concat(files);
 
