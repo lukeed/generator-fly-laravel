@@ -1,6 +1,6 @@
 import browserSync from 'browser-sync';
 const reload = browserSync.reload;
-const proxy = 'localhost:8000';
+const proxy = '<%= proxy %>';
 
 const src = 'resources/assets';
 const dest = 'public/assets';

@@ -26,6 +26,13 @@ module.exports = yeoman.generators.Base.extend({
         return 'http://github.com/' + props.username;
       }
     }, {
+      name: 'proxy',
+      message: 'What is this project\'s development URL?',
+      store: true,
+      default: function(props) {
+        return 'http://homestead.app';
+      }
+    }, {
       type: 'confirm',
       name: 'installXO',
       message: 'Do you want to use XO\'s ESLint settings?',
@@ -63,6 +70,7 @@ module.exports = yeoman.generators.Base.extend({
       this.includeXO = props.installXO;
       this.includeAva = props.installAva;
 
+      this.proxy = fmtUrl(props.proxy);
       this.website = fmtUrl(props.website);
       this.email = this.user.git.email();
       this.name = this.user.git.name();
@@ -96,7 +104,7 @@ module.exports = yeoman.generators.Base.extend({
     this.template('editorconfig', '.editorconfig');
     this.template('_package.json', 'package.json');
 
-    this.template('flyfile', 'flyfile.js');
+    this.template('flyfile', 'flyfile.js', {proxy: this.proxy});
 
     this.fs.copy(
       this.templatePath('assets'),
