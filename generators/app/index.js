@@ -86,7 +86,9 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   copy: function() {
+    const done = this.async();
     console.log('inside copy')
+    done();
   },
 
   install: function() {
@@ -98,12 +100,15 @@ module.exports = yeoman.generators.Base.extend({
   end: function() {
     if (!this.props.gitinit) return;
 
+    const done = this.async();
     const self = this;
+
     console.log('\n');
     this.spawnCommand('git', ['init']).on('close', function() {
       self.spawnCommand('git', ['add', '--all']).on('close', function() {
         self.spawnCommand('git', ['commit', '-m', 'first commit, via generator-fly-laravel 🚀']).on('close', function() {
           console.log('\n');
+          done();
         });
       });
     });
