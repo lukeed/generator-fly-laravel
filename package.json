@@ -13,7 +13,13 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "boilerplate",
+    "laravel",
+    "starter",
+    "webapp",
+    "kit",
+    "fly"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
