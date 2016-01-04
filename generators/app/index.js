@@ -3,7 +3,7 @@ const fmtUrl = require('normalize-url');
 const chalk = require('chalk');
 const yosay = require('yosay');
 
-const repo = 'https://github.com/laravel/laravel.git';
+const base = 'https://github.com/laravel';
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
@@ -14,6 +14,12 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     const prompts = [{
+      name: 'framework',
+      type: 'list',
+      message: 'Would you like to work with Laravel or Lumen?',
+      store: true,
+      choices: ['Laravel', 'Lumen']
+    }, {
       name: 'username',
       message: 'What is your GitHub username?',
       store: true,
@@ -84,7 +90,8 @@ module.exports = yeoman.generators.Base.extend({
   writing: function() {
     const done = this.async();
     const self = this;
-
+    const repo = `${base}/${this.props.framework.toLowerCase()}.git`
+    
     self.spawnCommand('git', ['clone', '--depth=1', repo, '.']).on('close', function() {
       const files = ['.git', 'package.json', '.gitignore', '.gitattributes', 'resources/assets'];
       const args  = ['-rf'].concat(files);
