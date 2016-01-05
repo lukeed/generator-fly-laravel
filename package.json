@@ -1,7 +1,7 @@
 {
   "name": "generator-fly-laravel",
   "version": "0.3.1",
-  "description": "Scaffold a new Laravel application with Fly as its tooling system.",
+  "description": "Scaffold a new Laravel or Lumen application with Fly as its tooling system.",
   "homepage": "lukeed/generator-fly-laravel",
   "author": {
     "name": "Luke Edwards",
@@ -16,6 +16,7 @@
     "yeoman-generator",
     "boilerplate",
     "laravel",
+    "lumen",
     "starter",
     "webapp",
     "kit",

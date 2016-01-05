@@ -1,5 +1,5 @@
 # generator-fly-laravel [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Scaffold a new Laravel application with Fly as its tooling system.
+> Scaffold a new Laravel or Lumen application with Fly as its tooling system.
 
 ## Installation
 
