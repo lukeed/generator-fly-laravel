@@ -86,6 +86,7 @@ module.exports = yeoman.generators.Base.extend({
 
       this.includeXO = props.useXO;
       this.includeAva = props.useTests;
+      this.testrunner = props.testrunner.toLowerCase();
 
       this.proxy = fmtUrl(props.proxy);
       this.website = fmtUrl(props.website);
@@ -136,9 +137,8 @@ module.exports = yeoman.generators.Base.extend({
     }
 
     if (this.props.useTests) {
-      const tests = 'tests/' + this.props.testrunner.toLowerCase();
       this.fs.copy(
-        this.templatePath(tests),
+        this.templatePath('tests/' + this.testrunner),
         this.destinationPath('resources/tests')
       );
     }
