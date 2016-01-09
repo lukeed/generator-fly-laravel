@@ -42,16 +42,25 @@ module.exports = yeoman.generators.Base.extend({
       }
     }, {
       type: 'confirm',
-      name: 'installXO',
+      name: 'useXO',
       message: 'Do you want to use XO\'s ESLint settings?',
       store: true,
       default: true
     }, {
       type: 'confirm',
-      name: 'installAva',
+      name: 'useTests',
       message: 'Do you want to install a test suite?',
       store: true,
       default: true
+    }, {
+      type: 'list',
+      name: 'testrunner',
+      message: 'Great! Which test runner would you like to use?',
+      choices: ['Ava', 'Karma', 'Mocha', 'Protractor', 'Tape'],
+      store: true,
+      when: function (response) {
+        return response.useTests;
+      }
     }, {
       type: 'confirm',
       name: 'travis',
@@ -75,8 +84,8 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function(props) {
       this.props = props;
 
-      this.includeXO = props.installXO;
-      this.includeAva = props.installAva;
+      this.includeXO = props.useXO;
+      this.includeAva = props.useTests;
 
       this.proxy = fmtUrl(props.proxy);
       this.website = fmtUrl(props.website);
@@ -91,7 +100,7 @@ module.exports = yeoman.generators.Base.extend({
     const done = this.async();
     const self = this;
     const repo = `${base}/${this.props.framework.toLowerCase()}.git`
-    
+
     self.spawnCommand('git', ['clone', '--depth=1', repo, '.']).on('close', function() {
       const files = ['.git', 'package.json', '.gitignore', '.gitattributes', 'resources/assets'];
       const args  = ['-rf'].concat(files);
@@ -118,7 +127,7 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('resources/assets')
     );
 
-    const lint = this.props.installXO ? 'eslint_xo' : 'eslint_default';
+    const lint = this.props.useXO ? 'eslint_xo' : 'eslint_default';
     this.template(lint, '.eslintrc');
 
     if (this.props.gitinit) {
@@ -126,9 +135,10 @@ module.exports = yeoman.generators.Base.extend({
       this.template('gitattributes', '.gitattributes');
     }
 
-    if (this.includeAva) {
+    if (this.props.useTests) {
+      const tests = 'tests/' + this.props.testrunner.toLowerCase();
       this.fs.copy(
-        this.templatePath('tests'),
+        this.templatePath(tests),
         this.destinationPath('resources/tests')
       );
     }
@@ -145,8 +155,8 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function() {
-    this.installDependencies({bower: false});
     this.spawnCommand('composer', ['install']);
+    this.installDependencies({bower: false});
     this.async()
   },
 
