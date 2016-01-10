@@ -133,14 +133,25 @@ module.exports = yeoman.generators.Base.extend({
     this.template('editorconfig', '.editorconfig');
     this.template('_package.json', 'package.json');
 
+    // Copy FlyFile
     this.template('flyfile', 'flyfile.js', {
       proxy: this.proxy,
       cssTool: this.cssTool
     });
 
+    // Copy Static Assets, no alternatives
+    const statics = ['fonts', 'images', 'scripts'];
+    statics.forEach(function(s) {
+      this.fs.copy(
+        this.templatePath('assets/'+s),
+        this.destinationPath('resources/assets/'+s)
+      );
+    }.bind(this));
+
+    // Copy Style Assets, based on response
     this.fs.copy(
-      this.templatePath('assets'),
-      this.destinationPath('resources/assets')
+      this.templatePath('assets/styles/'+this.cssTool),
+      this.destinationPath('resources/assets/styles')
     );
 
     const lint = this.props.useXO ? 'eslint_xo' : 'eslint_default';
