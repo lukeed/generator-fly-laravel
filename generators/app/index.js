@@ -133,10 +133,16 @@ module.exports = yeoman.generators.Base.extend({
     this.template('editorconfig', '.editorconfig');
     this.template('_package.json', 'package.json');
 
+    // Prepare FlyFile styles' path selector
+    const ext = (this.cssTool == 'sass')
+      ? '{sass,scss}' : (this.cssTool == 'stylus')
+      ? 'styl' : this.cssTool;
+
     // Copy FlyFile
     this.template('flyfile', 'flyfile.js', {
       proxy: this.proxy,
-      cssTool: this.cssTool
+      cssTool: this.cssTool,
+      cssPath: "/styles/**/*."+ext
     });
 
     // Copy Static Assets, no alternatives

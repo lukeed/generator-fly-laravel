@@ -11,7 +11,7 @@ const paths = {
     dest: dest + '/js'
   },
   styles: {
-    src: [src + '/styles/**/*.{sass,scss,less,stylus,css}'],
+    src: [src + '<%= cssPath %>'],
     dest: dest + '/css'
   },
   images: {
