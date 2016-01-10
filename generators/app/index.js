@@ -96,9 +96,9 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt(prompts, function(props) {
       this.props = props;
 
-      this.includeXO = props.useXO;
-      this.includeAva = props.useTests;
+      this.useTests = props.useTests;
       this.testrunner = props.testrunner.toLowerCase();
+      this.cssTool = props.cssTool.toLowerCase();
 
       this.proxy = fmtUrl(props.proxy);
       this.website = fmtUrl(props.website);
@@ -170,9 +170,15 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function() {
+    var plugins = [];
+    if (this.testrunner) plugins.push('fly-'+this.testrunner);
+    if (this.cssTool) plugins.push('fly-'+this.cssTool);
+    if (this.props.useXO) plugins.push('eslint-config-xo');
+
     this.spawnCommand('composer', ['install']);
+
     this.installDependencies({bower: false});
-    this.async()
+    this.npmInstall(plugins, {saveDev: true});
   },
 
   end: function() {
