@@ -101,7 +101,7 @@ module.exports = yeoman.generators.Base.extend({
 
       this.useTests = props.useTests;
       this.testrunner = props.useTests ? props.testrunner.toLowerCase() : null;
-      this.cssTool = props.useProcessor ? props.cssTool.toLowerCase() : null;
+      this.cssTool = props.useProcessor ? props.cssTool.toLowerCase() : 'css';
 
       this.proxy = fmtUrl(props.proxy);
       this.website = fmtUrl(props.website);
