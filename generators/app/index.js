@@ -192,7 +192,7 @@ module.exports = yeoman.generators.Base.extend({
   install: function() {
     var plugins = [];
     if (this.testrunner) plugins.push('fly-'+this.testrunner);
-    if (this.cssTool) plugins.push('fly-'+this.cssTool);
+    if (this.props.useProcessor) plugins.push('fly-'+this.cssTool);
     if (this.props.useXO) plugins.push('eslint-config-xo');
 
     this.spawnCommand('composer', ['install']);
