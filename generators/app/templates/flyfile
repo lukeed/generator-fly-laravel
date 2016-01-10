@@ -11,7 +11,7 @@ const paths = {
     dest: dest + '/js'
   },
   styles: {
-    src: [src + '/styles/**/*.{sass,scss}'],
+    src: [src + '/styles/**/*.{sass,scss,less,stylus,css}'],
     dest: dest + '/css'
   },
   images: {
@@ -119,7 +119,13 @@ export function * scripts() {
 export function * styles() {
   yield this
     .source(paths.styles.src)
+    <% if (cssTool == 'sass') { %>
     .sass({outputStyle: 'compressed'})
+    <% } else if (cssTool == 'stylus') { %>
+    .stylus()
+    <% } else if (cssTool == 'less') { %>
+    .less()
+    <% } %>
     .autoprefixer()
     .concat('main.css')
     .target(paths.styles.dest);

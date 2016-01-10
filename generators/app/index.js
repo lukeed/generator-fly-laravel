@@ -42,6 +42,18 @@ module.exports = yeoman.generators.Base.extend({
       }
     }, {
       type: 'confirm',
+      name: 'useProcessor',
+      message: 'Do you want to use a CSS preprocessor?',
+      store: true,
+      default: true
+    }, {
+      type: 'list',
+      name: 'cssTool',
+      message: 'Good choice! Which CSS preprocessor would you like?',
+      store: true,
+      choices: ['SASS', 'LESS', 'Stylus']
+    }, {
+      type: 'confirm',
       name: 'useXO',
       message: 'Do you want to use XO\'s ESLint settings?',
       store: true,
@@ -121,7 +133,10 @@ module.exports = yeoman.generators.Base.extend({
     this.template('editorconfig', '.editorconfig');
     this.template('_package.json', 'package.json');
 
-    this.template('flyfile', 'flyfile.js', {proxy: this.proxy});
+    this.template('flyfile', 'flyfile.js', {
+      proxy: this.proxy,
+      cssTool: this.cssTool
+    });
 
     this.fs.copy(
       this.templatePath('assets'),
