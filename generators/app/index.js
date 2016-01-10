@@ -51,7 +51,10 @@ module.exports = yeoman.generators.Base.extend({
       name: 'cssTool',
       message: 'Good choice! Which CSS preprocessor would you like?',
       store: true,
-      choices: ['SASS', 'LESS', 'Stylus']
+      choices: ['SASS', 'LESS', 'Stylus'],
+      when: function (response) {
+        return response.useProcessor;
+      }
     }, {
       type: 'confirm',
       name: 'useXO',
