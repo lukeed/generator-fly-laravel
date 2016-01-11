@@ -49,7 +49,7 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type: 'list',
       name: 'cssTool',
-      message: 'Good choice! Which CSS preprocessor would you like?',
+      message: chalk.green('Good choice! ') + 'Which CSS preprocessor would you like?',
       store: true,
       choices: ['SASS', 'LESS', 'Stylus'],
       when: function (response) {
@@ -70,7 +70,7 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type: 'list',
       name: 'testrunner',
-      message: 'Great! Which test runner would you like to use?',
+      message: chalk.green('Great! ') + 'Which test runner would you like to use?',
       choices: [ 'Ava', 'Mocha' ], // 'Karma', 'Protractor', 'Tape'
       store: true,
       when: function (response) {
