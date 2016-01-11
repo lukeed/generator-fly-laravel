@@ -16,9 +16,14 @@ Then generate your new project:
 yo fly-laravel
 ```
 
-## Getting To Know Yeoman
+## Prompts
 
-Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
+* **Framework:** Laravel vs Lumen
+* **CSS Preprocessor:** SASS, LESS, Stylus, None
+* **Test Runner:** Ava, Mocha, Tape, None
+* **ESLint Config:** XO preset or AirBnB preset
+* **Travis:** Add a `.travis.yml` file?
+* **Git:** To `init` or Not to `init`?
 
 ## License
 
