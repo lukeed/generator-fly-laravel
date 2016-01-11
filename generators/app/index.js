@@ -71,7 +71,7 @@ module.exports = yeoman.generators.Base.extend({
       type: 'list',
       name: 'testrunner',
       message: 'Great! Which test runner would you like to use?',
-      choices: ['Ava', 'Karma', 'Mocha', 'Protractor', 'Tape'],
+      choices: [ 'Ava', 'Mocha' ], // 'Karma', 'Protractor', 'Tape'
       store: true,
       when: function (response) {
         return response.useTests;
