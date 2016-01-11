@@ -115,7 +115,7 @@ module.exports = yeoman.generators.Base.extend({
   writing: function() {
     const done = this.async();
     const self = this;
-    const repo = `${base}/${this.props.framework.toLowerCase()}.git`
+    const repo = base + '/' + this.props.framework.toLowerCase() + '.git';
 
     self.spawnCommand('git', ['clone', '--depth=1', repo, '.']).on('close', function() {
       const files = ['.git', 'package.json', '.gitignore', '.gitattributes', 'resources/assets'];
