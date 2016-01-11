@@ -14,14 +14,13 @@
   "main": "generators/index.js",
   "keywords": [
     "yeoman-generator",
-    "boilerplate",
-    "scaffold",
-    "laravel",
-    "lumen",
-    "starter",
-    "webapp",
-    "kit",
-    "fly"
+    "boilerplate", "scaffold",
+    "starter", "webapp", "kit", "fly",
+    "laravel", "lumen", "framework",
+    "stylus", "sass", "less",
+    "es2015", "es6", "es7",
+    "ava", "tape", "mocha",
+    "tests", "test runner"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
