@@ -190,7 +190,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function() {
-    var plugins = ['eslint'];
+    var plugins = ['eslint', 'fly-ava']; // @BUG: Missing Deps without it????
     if (this.testrunner) plugins.push('fly-'+this.testrunner);
     if (this.props.useProcessor) plugins.push('fly-'+this.cssTool);
     if (this.props.useXO) plugins.push('eslint-config-xo');
