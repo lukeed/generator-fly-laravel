@@ -190,8 +190,6 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function() {
-    const self = this;
-
     var plugins = ['eslint'];
     if (this.testrunner) plugins.push('fly-'+this.testrunner);
     if (this.props.useProcessor) plugins.push('fly-'+this.cssTool);
@@ -199,12 +197,10 @@ module.exports = yeoman.generators.Base.extend({
 
     this.spawnCommand('composer', ['install', '--quiet']);
 
-    this.installDependencies({
-      bower: false,
-      callback: function() {
-        self.npmInstall(plugins, {saveDev: true});
-      }
-    });
+    this.installDependencies({bower: false});
+    this.npmInstall(plugins, {saveDev: true});
+
+    this.async();
   },
 
   end: function() {
