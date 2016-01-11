@@ -19,9 +19,11 @@ yo fly-laravel
 ## Prompts
 
 * **Framework:** Laravel vs Lumen
+* **Github:** Author & Author's Website
+* **Dev URL Proxy:** Vagrant URL to proxy, via BrowserSync
 * **CSS Preprocessor:** SASS, LESS, Stylus, None
-* **Test Runner:** Ava, Mocha, Tape, None
 * **ESLint Config:** XO preset or AirBnB preset
+* **Test Runner:** Ava, Mocha, Tape, None
 * **Travis:** Add a `.travis.yml` file?
 * **Git:** To `init` or Not to `init`?
 
