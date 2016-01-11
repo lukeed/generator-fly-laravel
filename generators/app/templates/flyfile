@@ -146,6 +146,11 @@ export function * rev() {
   });
 }
 
+// Test Runner
+export function * test() {
+  //
+}
+
 // Launch loacl serve at develop directory
 export function * _serve() {
   isServer = true;
