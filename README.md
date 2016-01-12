@@ -29,12 +29,12 @@ yo fly-laravel
 
 ## TODOs
 
-[ ] Write real tests with each runner
-[ ] Add Tape and possibly Protractor and Karma as options
-[ ] More demo-worthy stylesheets
-[ ] Front-end Demo
-[ ] ES5 vs ES6 vs ES7 scripts
-[ ] BUG: Find out why fly-ava must always be included for Fly to work (???)
+- [ ] Write real tests with each runner
+- [ ] Add Tape and possibly Protractor and Karma as options
+- [ ] More demo-worthy stylesheets
+- [ ] Front-end Demo
+- [ ] ES5 vs ES6 vs ES7 scripts
+- [ ] BUG: Find out why fly-ava must always be included for Fly to work (???)
 
 ## License
 
