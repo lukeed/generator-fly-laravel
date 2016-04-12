@@ -28,14 +28,11 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "^4.1.6",
     "browser-sync": "^2.10.0",
-    "eslint-plugin-babel": "^3.0.0",
-    "fly": "^0.8.4",
+    "fly": "^1.2.0",
     "fly-autoprefixer": "^0.2.0",
     "fly-babel": "^0.7.0",
-    "fly-eslint": "^1.0.0",
-    "fly-rev": "^0.8.0",
+    "fly-rev": "^0.9.0",
     "fly-uglify": "^1.0.0"
   }
 }
