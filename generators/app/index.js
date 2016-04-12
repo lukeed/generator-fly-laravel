@@ -163,9 +163,6 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('resources/assets/styles')
     );
 
-    const lint = this.props.useXO ? 'eslint_xo' : 'eslint_default';
-    this.template(lint, '.eslintrc');
-
     if (this.props.gitinit) {
       this.template('gitignore', '.gitignore');
       this.template('gitattributes', '.gitattributes');
