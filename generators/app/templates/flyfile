@@ -1,11 +1,14 @@
-import browserSync from 'browser-sync';
-const reload = browserSync.reload;
-const proxy = '<%= proxy %>';
+var browserSync = require('browser-sync');
+var proxy = '<%= proxy %>';
 
-const src = 'resources/assets';
-const dest = 'public/assets';
+var isProd = false;
+var isWatch = false;
+var isServer = false;
 
-const paths = {
+var src = 'resources/assets';
+var dest = 'public/assets';
+
+var paths = {
   scripts: {
     src: [src + '/scripts/**/*.js'],
     dest: dest + '/js'
@@ -24,14 +27,8 @@ const paths = {
   }
 };
 
-let isProd = false;
-let isWatch = false;
-let isServer = false;
-
-/**
- * Default Task
- */
-export default function * () {
+exports.default = function * () {
+  /** @desc Default task */
   isWatch = true;
   isProd = false;
   yield this.start('clean');
@@ -40,67 +37,49 @@ export default function * () {
   yield this.watch(paths.images.src, 'images');
   yield this.watch(paths.fonts.src, 'fonts');
   // yield this.watch(paths.html.src, 'html');
-}
+};
 
-/**
- * Run a dev server & Recompile when files change
- */
-export function * watch() {
-  yield this.start(['default', '_serve']);
-}
+exports.watch = function * () {
+  /** @desc Run a dev server & Recompile when files change */
+  yield this.start(['default', 'serve']);
+};
 
-/**
- * Build & Serve the production files
- */
-export function * serve() {
-  yield this.start(['build', '_serve']);
-}
-
-export function * build() {
+exports.build = function * () {
+  /** @desc Build files for production */
   isProd = true; isWatch = false;
   yield this.start('clean');
   yield this.start(['eslint', 'images', 'fonts', 'scripts', 'styles', 'html'], {parallel: true});
   yield this.start('rev');
-}
+};
 
 // ###
 // # Tasks
 // ###
 
-// Delete the output directories
-export function * clean() {
+exports.clean = function * () {
+  /** @desc Delete the output directories */
   yield this.clear('dist');
-}
+};
 
-// Lint javascript
-export function * eslint() {
+exports.eslint = function * () {
+  /** @desc Lint javascript */
   yield this.source(paths.scripts.src).eslint();
-}
+};
 
-// Copy all images, compress them, then send to dest
-export function * images() {
+exports.images = function * () {
+  /** @desc Copy all images, compress them, then send to dest */
   yield this.source(paths.images.src).target(paths.images.dest);
+  reload();
+};
 
-  if (isWatch && isServer) {
-    reload();
-  }
-}
-
-// Copy all fonts, then send to dest
-export function * fonts() {
+exports.fonts = function * () {
+  /** @desc Copy all fonts, then send to dest */
   yield this.source(paths.fonts.src).target(paths.fonts.dest);
+  reload();
+};
 
-  if (isWatch && isServer) {
-    reload();
-  }
-}
-
-// Scan your HTML for assets & optimize them
-export function * html() {
-}
-
-//
-export function * scripts() {
+exports.scripts = function * () {
+  /** @desc Compile javascript files */
   yield this
     .source(paths.scripts.src)
     .babel({
@@ -110,13 +89,11 @@ export function * scripts() {
     .concat('main.js')
     .target(paths.scripts.dest);
 
-  if (isWatch && isServer) {
-    reload();
-  }
-}
+  reload();
+};
 
-// Compile and automatically prefix stylesheets
-export function * styles() {
+exports.styles = function * () {
+  /** @desc Compile and automatically prefix stylesheets */
   yield this
     .source(paths.styles.src)
     <% if (cssTool == 'sass') { %>
@@ -130,12 +107,11 @@ export function * styles() {
     .concat('main.css')
     .target(paths.styles.dest);
 
-  if (isWatch && isServer) {
-    reload();
-  }
-}
+  reload();
+};
 
-export function * rev() {
+exports.rev = function * () {
+  /** @desc Versionify production files for cache-busting */
   const assets = ['scripts', 'styles', 'images'].map(type => {
     return `${paths[type].dest}/**/*`;
   });
@@ -144,15 +120,10 @@ export function * rev() {
     base: dest,
     replace: true
   });
-}
+};
 
-// Test Runner
-export function * test() {
-  //
-}
-
-// Launch loacl serve at develop directory
-export function * _serve() {
+exports.serve = function * () {
+  /** @desc Launch local server, proxied */
   isServer = true;
 
   browserSync({
@@ -160,4 +131,11 @@ export function * _serve() {
     logPrefix: ' ✈ ',
     proxy: proxy
   });
+};
+
+function reload() {
+  if (isWatch && isServer) {
+    browserSync.reload();
+  }
 }
+
