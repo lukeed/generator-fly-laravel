@@ -1,3 +1,5 @@
+'use strict';
+
 const yeoman = require('yeoman-generator');
 const fmtUrl = require('normalize-url');
 const chalk = require('chalk');
