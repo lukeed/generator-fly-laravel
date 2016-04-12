@@ -1,6 +1,6 @@
 {
   "name": "generator-fly-laravel",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Scaffold a new Laravel or Lumen application with Fly as its tooling system.",
   "homepage": "lukeed/generator-fly-laravel",
   "author": {
@@ -14,13 +14,26 @@
   "main": "generators/index.js",
   "keywords": [
     "yeoman-generator",
-    "boilerplate", "scaffold",
-    "starter", "webapp", "kit", "fly",
-    "laravel", "lumen", "framework",
-    "stylus", "sass", "less",
-    "es2015", "es6", "es7",
-    "ava", "tape", "mocha",
-    "tests", "test runner"
+    "boilerplate",
+    "scaffold",
+    "starter",
+    "webapp",
+    "kit",
+    "fly",
+    "laravel",
+    "lumen",
+    "framework",
+    "stylus",
+    "sass",
+    "less",
+    "es2015",
+    "es6",
+    "es7",
+    "ava",
+    "tape",
+    "mocha",
+    "tests",
+    "test runner"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
