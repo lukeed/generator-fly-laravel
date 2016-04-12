@@ -9,7 +9,7 @@
   "scripts": {
     "build": "fly build",
     "fly": "fly",
-    "serve": "fly serve",
+    "serve": "fly build && fly serve",
     "watch": "fly watch",
     "test": <% if (useTests) { %> "fly test" <% } else { %> "echo \"Error: no test specified\" && exit 1" <% } %>
   },
