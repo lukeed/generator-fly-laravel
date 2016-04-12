@@ -4,7 +4,7 @@
   "license": "MIT",
   "engines": {
     "iojs": ">= 1.0.0",
-    "node": ">= 0.11.0"
+    "node": ">= 0.12.0"
   },
   "scripts": {
     "build": "fly build",
